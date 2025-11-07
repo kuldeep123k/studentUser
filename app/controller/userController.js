@@ -46,7 +46,7 @@ const register = (req,res) => {
         const mailResult=  await sendMail(email, subject, content).then(function(response) {
             
             console.log("resssss "+response);
-            if(response){
+            if(response==false){
                 console.log('response is empty');
                 return res.status(500).json({errors: [{msg: 'Failed to send verification emails'}] });
 
@@ -406,3 +406,4 @@ module.exports ={
     reset_password
 
 };
+
