@@ -33,7 +33,7 @@ let sendMail= async(email, semailSubject,content)=>{
 
              if(err){
                 console.error('Error sending emails ',err);
-                return null;
+                 results=false;
                 
              }else{
                  console.log('Email sent');
@@ -45,10 +45,17 @@ let sendMail= async(email, semailSubject,content)=>{
         return null;
     }
 
+    
+      console.log("Starting sequential task...");
+  await delay(50000); // Wait for 10 seconds
+  console.log("10 seconds have passed. Continuing sequential task.");
+  // More code that should run after the delay
+
     return results;
 
 }
 
 
 module.exports=sendMail;
+
 
