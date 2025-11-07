@@ -9,9 +9,7 @@ const connection = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  ssl: {
-    rejectUnauthorized: true
-  }
+  port: 3306
 });
 
 // const connection = new mysql.createConnection({
@@ -59,6 +57,7 @@ console.log({
 
 
     module.exports = connection;
+
 
 
 
