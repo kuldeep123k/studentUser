@@ -24,13 +24,15 @@ const connection = new mysql.createConnection({
 // Connect to the database
   connection.connect((err) => {
 
-   if (err) throw err;
+   if (err) {
+     throw  err;
+   }
   console.log('Connected to MySQL!');
 
-  const sql = `INSERT INTO users (name, email, age) VALUES ?`;
+  const sql = `INSERT INTO users (name, email, password) VALUES ?`;
   const values = [
-    ['Alice', 'aman@gmail.com', 22],
-    ['Bob', 'bob@example.com', 30],
+    ['Alice', 'aman@gmail.com', 1234567],
+    ['Bob', 'bob@example.com', 1234567],
   ];
 
   db.query(sql, [values], (err, result) => {
@@ -49,3 +51,4 @@ const connection = new mysql.createConnection({
 
 
     module.exports = connection;
+
