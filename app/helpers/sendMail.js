@@ -20,7 +20,7 @@ let sendMail= async(email, semailSubject,content)=>{
     
     // send mail with defined transport object
     let mailOptions = {
-        from: SMTP_MAIL,
+        from: "er.kuldeepkumar2018@gmail.com",
         to: email,
         subject: semailSubject,
         text: content
@@ -48,5 +48,6 @@ let sendMail= async(email, semailSubject,content)=>{
     return results;
 
 }
+
 
 module.exports=sendMail;
