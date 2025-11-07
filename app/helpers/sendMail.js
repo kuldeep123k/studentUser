@@ -1,6 +1,9 @@
 const nodemailer = require('nodemailer');
 const {SMTP_MAIL, SMTP_PASSWORD}= process.env;
 
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+
 // create reusable transporter object using the default SMTP transport
 let sendMail= async(email, semailSubject,content)=>{
 
@@ -45,7 +48,11 @@ let sendMail= async(email, semailSubject,content)=>{
         return null;
     }
 
-
+    
+      console.log("Starting sequential task...");
+  await delay(50000); // Wait for 10 seconds
+  console.log("10 seconds have passed. Continuing sequential task.");
+  // More code that should run after the delay
 
     return results;
 
@@ -53,6 +60,7 @@ let sendMail= async(email, semailSubject,content)=>{
 
 
 module.exports=sendMail;
+
 
 
 
