@@ -6,19 +6,25 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 function createDelay(ms) {
   let timer;
-  let rejectFn;
+  let done = false;
+  let resolveFn;
 
-  const promise = new Promise((resolve, reject) => {
-    rejectFn = reject;
-    timer = setTimeout(resolve, ms);
+  const promise = new Promise((resolve) => {
+    resolveFn = resolve;
+    timer = setTimeout(() => {
+      done = true;
+      resolve();
+    }, ms);
   });
 
   return {
     promise,
     cancel: () => {
-      clearTimeout(timer);
-      rejectFn(new Error('Delay cancelled'));
-    }
+      if (!done) {
+        clearTimeout(timer);
+        resolveFn(); // resolve immediately so code continues
+      }
+    },
   };
 }
 
@@ -51,9 +57,8 @@ let sendMail= async(email, semailSubject,content)=>{
 
     let results=false;
 
-  console.log('Starting delay...');
-
-  const delay = createDelay(300000);
+  console.log('Start delay...');
+  const delay = createDelay(30000);
     
 
     try{
@@ -62,12 +67,14 @@ let sendMail= async(email, semailSubject,content)=>{
              if(err){
                 console.error('Error sending email ',err);
                  results=false;
-                  delay.cancel();
+                    console.log('Cancel delay now!');
+    delay.cancel(); // continues immediately
                 
              }else{
                  console.log('Email sent');
                  results= true;
-                  delay.cancel();
+                     console.log('Cancel delay now!');
+    delay.cancel(); // continues immediately
              }
         });
     }catch(err){
@@ -76,7 +83,9 @@ let sendMail= async(email, semailSubject,content)=>{
     }
 
       console.log("Starting sequential task...");
-   await delay.promise;
+  
+  await delay.promise; // waits until resolved or cancelled
+  console.log('Continue with other code...');
   console.log("180 seconds have passed. Continuing sequential task.");
   // More code that should run after the delay
 
@@ -86,6 +95,7 @@ let sendMail= async(email, semailSubject,content)=>{
 
 
 module.exports=sendMail;
+
 
 
 
