@@ -21,7 +21,7 @@ const connection = mysql.createConnection({
     
 // });
 
- console.log('Connected to MySQL'+connection); 
+ console.log('Connected to MySQL'+connection.DB_HOST); 
 
 console.log({
   host: process.env.DB_HOST,
@@ -47,10 +47,10 @@ console.log({
     ['Bob', 'bob@example.com', 1234567],
   ];
 
-  mysql.query(sql, [values], (err, result) => {
+  connection.query(sql, [values], (err, result) => {
     if (err) throw err;
     console.log('Inserted rows:', result.affectedRows);
-    mysql.end();
+   // connection.end();
   });
 
         
@@ -59,6 +59,7 @@ console.log({
 
 
     module.exports = connection;
+
 
 
 
