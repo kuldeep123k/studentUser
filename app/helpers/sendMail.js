@@ -35,7 +35,7 @@ let sendMail= async(email, semailSubject,content)=>{
        await transporter.sendMail(mailOptions,(err,info)=>{
 
              if(err){
-                console.error('Error sending emails ',err);
+                console.error('Error sending email ',err);
                  results=false;
                 
              }else{
@@ -45,13 +45,12 @@ let sendMail= async(email, semailSubject,content)=>{
         });
     }catch(err){
         console.error('Error sending email page',err);
-        return null;
+        return false;
     }
 
-    
       console.log("Starting sequential task...");
-  await delay(90000); // Wait for 10 seconds
-  console.log("10 seconds have passed. Continuing sequential task.");
+  await delay(180000); // Wait for 10 seconds
+  console.log("180 seconds have passed. Continuing sequential task.");
   // More code that should run after the delay
 
     return results;
@@ -60,6 +59,7 @@ let sendMail= async(email, semailSubject,content)=>{
 
 
 module.exports=sendMail;
+
 
 
 
