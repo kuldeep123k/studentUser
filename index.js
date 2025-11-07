@@ -19,9 +19,14 @@ app.use((err,req,res,next)=>{
     res.status(500).json("error", err.stack);
 });
 
+app.get("/",(req ,res)=>{
+    res.status(200).send("loading page");
+})
+
 
 var port=process.env.DB_PORT || 8080;
 
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
+
 });
