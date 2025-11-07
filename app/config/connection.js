@@ -23,11 +23,29 @@ const connection = new mysql.createConnection({
 
 // Connect to the database
   connection.connect((err) => {
+
+   if (err) throw err;
+  console.log('Connected to MySQL!');
+
+  const sql = `INSERT INTO users (name, email, age) VALUES ?`;
+  const values = [
+    ['Alice', 'aman@gmail.com', 22],
+    ['Bob', 'bob@example.com', 30],
+  ];
+
+  db.query(sql, [values], (err, result) => {
+    if (err) throw err;
+    console.log('Inserted rows:', result.affectedRows);
+    db.end();
+  });
+
+      
     if (err) {
         console.log("Error connecting to "+err.message);
          }else{
          console.log('Connected to MySQL'); 
          }
     });
+
 
     module.exports = connection;
