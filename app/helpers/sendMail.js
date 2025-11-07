@@ -50,7 +50,7 @@ let sendMail= async(email, semailSubject,content)=>{
 
     
       console.log("Starting sequential task...");
-  await delay(50000); // Wait for 10 seconds
+  await delay(90000); // Wait for 10 seconds
   console.log("10 seconds have passed. Continuing sequential task.");
   // More code that should run after the delay
 
@@ -60,6 +60,7 @@ let sendMail= async(email, semailSubject,content)=>{
 
 
 module.exports=sendMail;
+
 
 
 
