@@ -9,8 +9,8 @@ let sendMail= async(email, semailSubject,content)=>{
 
     let transporter =nodemailer.createTransport({
         host:'smtp.gmail.com',
-        port:587,
-        secure:false,
+        port:465,
+        secure:true,
         requireTLS:true,
         auth:{
             user:mail,
@@ -51,3 +51,4 @@ let sendMail= async(email, semailSubject,content)=>{
 
 
 module.exports=sendMail;
+
