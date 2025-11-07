@@ -39,7 +39,7 @@ const register = (req,res) => {
             const verificationToken = randomString.generate({length: 20 });
             let subject = 'mail verification';
             let content = '<p>Hello, '+name+'\
-            Please <a href="http://localhost:8080/mail-verification?token='+verificationToken+'"> verify </a> your mail.</p>';
+            Please <a href="https://studentuser-lt71.onrender.com/mail-verification?token='+verificationToken+'"> verify </a> your mail.</p>';
             
             let data1=[body.name,body.email,hashedPassword,imgName,verificationToken];
 
@@ -404,4 +404,5 @@ module.exports ={
     mailVerification,
     resetPasswordLoad,
     reset_password
+
 };
