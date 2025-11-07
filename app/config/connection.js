@@ -21,14 +21,14 @@ const connection = mysql.createConnection({
     
 // });
 
- console.log('Connected to MySQL'+connection.DB_HOST); 
+//  console.log('Connected to MySQL'+connection.DB_HOST); 
 
-console.log({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-});
+// console.log({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   database: process.env.DB_NAME,
+//   port: process.env.DB_PORT,
+// });
 
 
 // Connect to the database
@@ -39,19 +39,19 @@ console.log({
          }else{
          console.log('Connected to MySQL'); 
 
-  console.log('Connected to MySQL!');
+  // console.log('Connected to MySQL!');
 
-  const sql = `INSERT INTO users (name, email, password) VALUES ?`;
-  const values = [
-    ['Alice', 'aman@gmail.com', 1234567],
-    ['Bob', 'bob@example.com', 1234567],
-  ];
+  // const sql = `INSERT INTO users (name, email, password) VALUES ?`;
+  // const values = [
+  //   ['Alice', 'aman@gmail.com', 1234567],
+  //   ['Bob', 'bob@example.com', 1234567],
+  // ];
 
-  connection.query(sql, [values], (err, result) => {
-    if (err) throw err;
-    console.log('Inserted rows:', result.affectedRows);
-   // connection.end();
-  });
+  // connection.query(sql, [values], (err, result) => {
+  //   if (err) throw err;
+  //   console.log('Inserted rows:', result.affectedRows);
+  //  // connection.end();
+  // });
 
         
          }
@@ -59,6 +59,7 @@ console.log({
 
 
     module.exports = connection;
+
 
 
 
