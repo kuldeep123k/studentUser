@@ -23,10 +23,12 @@ const connection = new mysql.createConnection({
 
 // Connect to the database
   connection.connect((err) => {
+      
+    if (err) {
+        console.log("Error connecting to "+err.message);
+         }else{
+         console.log('Connected to MySQL'); 
 
-   if (err) {
-     throw  err;
-   }
   console.log('Connected to MySQL!');
 
   const sql = `INSERT INTO users (name, email, password) VALUES ?`;
@@ -41,14 +43,11 @@ const connection = new mysql.createConnection({
     db.end();
   });
 
-      
-    if (err) {
-        console.log("Error connecting to "+err.message);
-         }else{
-         console.log('Connected to MySQL'); 
+        
          }
     });
 
 
     module.exports = connection;
+
 
