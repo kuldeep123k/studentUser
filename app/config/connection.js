@@ -5,10 +5,10 @@ require('dotenv').config();
 // Create a new MySQL connection
 
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: "bogtpeaqgpzt9g8a2njk-mysql.services.clever-cloud.com",
+  user: "uttbv9ordguv5chn",
+  password: "BnM8c9ZTmytzKmyixVju",
+  database: "bogtpeaqgpzt9g8a2njk",
   port: 3306
 });
 
@@ -57,6 +57,7 @@ console.log({
 
 
     module.exports = connection;
+
 
 
 
