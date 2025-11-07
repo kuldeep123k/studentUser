@@ -24,10 +24,11 @@ app.get("/",(req ,res)=>{
 })
 
 
-// var port=process.env.DB_PORT || 8080;
+var port=process.env.DB_PORT || 8080;
 
-// app.listen(port,()=>{
-//     console.log(`Server running on port ${port}`);
+app.listen(port,()=>{
+    console.log(`Server running on port ${port}`);
 
-// });
+});
+
 
