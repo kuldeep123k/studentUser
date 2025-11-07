@@ -4,6 +4,26 @@ const {SMTP_MAIL, SMTP_PASSWORD}= process.env;
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 
+function createDelay(ms) {
+  let timer;
+  let rejectFn;
+
+  const promise = new Promise((resolve, reject) => {
+    rejectFn = reject;
+    timer = setTimeout(resolve, ms);
+  });
+
+  return {
+    promise,
+    cancel: () => {
+      clearTimeout(timer);
+      rejectFn(new Error('Delay cancelled'));
+    }
+  };
+}
+
+
+
 // create reusable transporter object using the default SMTP transport
 let sendMail= async(email, semailSubject,content)=>{
 
@@ -31,27 +51,32 @@ let sendMail= async(email, semailSubject,content)=>{
 
     let results=false;
 
+  console.log('Starting delay...');
+
+  const delay = createDelay(300000);
+    
+
     try{
        await transporter.sendMail(mailOptions,(err,info)=>{
 
              if(err){
                 console.error('Error sending email ',err);
                  results=false;
-                 return false;
+                  delay.cancel();
                 
              }else{
                  console.log('Email sent');
                  results= true;
-                 return true;
+                  delay.cancel();
              }
         });
     }catch(err){
         console.error('Error sending email page',err);
-        return false;
+       
     }
 
       console.log("Starting sequential task...");
-  await delay(300000); // Wait for 10 seconds
+   await delay.promise;
   console.log("180 seconds have passed. Continuing sequential task.");
   // More code that should run after the delay
 
@@ -61,6 +86,7 @@ let sendMail= async(email, semailSubject,content)=>{
 
 
 module.exports=sendMail;
+
 
 
 
