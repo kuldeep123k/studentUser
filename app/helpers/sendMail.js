@@ -58,7 +58,7 @@ let sendMail= async(email, semailSubject,content)=>{
     let results=false;
 
   console.log('Start delay...');
-  const delay = createDelay(30000);
+  const delay = createDelay(180000);
     
 
     try{
@@ -95,6 +95,7 @@ let sendMail= async(email, semailSubject,content)=>{
 
 
 module.exports=sendMail;
+
 
 
 
